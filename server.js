@@ -1,8 +1,9 @@
 var express    = require("express");
 // var session = require("express-session");
 var login = require('./routes/loginroutes');
-// var vote = require('./routes/voteroutes')
+var vote = require('./routes/voteroutes')
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 // var MySQLStore = require('express-mysql-session')(session);
 
 var app = express();
@@ -11,11 +12,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", true);
     next();
 });
 
+app.use(cookieParser("This is brilliant oh yeah 193urfnjeksoiqhrqh0rh"));
+
+//
 // var options = {
 //   host     : 'localhost',
 //   port     : 3306,
@@ -29,7 +34,14 @@ app.use(function(req, res, next) {
 // var sessionStore = new MySQLStore(options);
 
 // session cookie setup
-// app.use('/login', session({
+
+var router = express.Router();
+
+router.get('/', function(req, res) {
+  res.send('ok cool');
+});
+
+// app.use('api/login', session({
 //     name: "something",
 //     secret: "SEEKRIT KEY LULZ 69",
 //     // store: sessionStore,
@@ -39,14 +51,8 @@ app.use(function(req, res, next) {
 //   })
 // );
 
-var router = express.Router();
-
-router.get('/', function(req, res) {
-  res.json({message: 'welcome to our upload module apis'});
-});
-
 //route to handle user login
 router.post('/login',login.login)
-// router.post('/vote', vote.vote)
+router.post('/vote', vote.vote)
 app.use('/api', router);
 app.listen(5000);
