@@ -1,4 +1,5 @@
 var mysql      = require('mysql');
+var cookieParser = require('cookie-parser');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -25,16 +26,30 @@ exports.login = function(req,res){
     if(results.length > 0){
       if(results[0].password == password){
         console.log("ok");
-        res.set('Content-Type', 'text/html');
-        // , function(err, html) {
-        //   res.status(200).send(html);
-        // });
-        // req.session.id = id;
-        // console.log(req.session.id);
-
-        res.status(200).sendFile("/Users/Shaleen/blockchain_voting/voting.html");
+        var cookie = req.signedCookies.sessID;
+        if (cookie === undefined)
+        {
+          // no: set a new cookie
+          var randomNumber=Math.random().toString();
+          randomNumber=randomNumber.substring(2,randomNumber.length);
+          res.cookie('sessID',randomNumber, { maxAge: 120000, httpOnly: true, signed: true});
+          res.cookie('UserID', id, { maxAge: 120000, httpOnly: true, signed: true});
+          console.log('cookie created successfully');
+        }
+        else
+        {
+          // yes, cookie was already present
+          console.log('cookie exists', cookie);
+        }
+        res.setHeader('Content-type', 'text/html');
+        res.status = 200;
+        fs = require('fs')
+        voting = fs.readFileSync('/Users/Shaleen/blockchain_voting/voting.html');
+        res.write(voting);
+        console.log("okok");
+        // res.sendFile('/Users/Shaleen/blockchain_voting/voting.html');
         // res.cookie('SESS_ID', id).send('');
-        // res.end();
+        res.end();
       }
       else{
         console.log("booboo");
