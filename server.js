@@ -12,11 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-<<<<<<< HEAD
     res.header("Access-Control-Allow-Origin", "http://10.30.26.212:8000");
-=======
-    res.header("Access-Control-Allow-Origin", "http://192.168.43.225:8000");
->>>>>>> aa72ad17b44581a3c236268a3a22fdd0f01e14ff
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", true);
     next();
