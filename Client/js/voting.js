@@ -10,9 +10,10 @@ function vote(){
   confirmed = confirm("Confirm your votes\nPresident: " + presidentName + "\nVice President: " + vicePresidentName);
 
   if(confirmed) {
-    // alert('yoq');
+    alert('yoq');
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.0.0.1:5000/api/vote", true);
+    xhr.open("POST", "http://10.30.26.212:5000/api/vote", true);
+    xhr.withCredentials = true;
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() { //Call a function when the state changes.
       if(xhr.readyState == XMLHttpRequest.DONE) {
@@ -31,11 +32,15 @@ function vote(){
           alert("Go away.");
           window.close();
         }
+        else if(xhr.status == 401) {
+          alert('Please login first.');
+        }
+        // location.reload();
       }
       // }
-      xhr.send("president=" + presidentName + "&vicepresident=" + vicePresidentName);
       // return true;
     }
+    xhr.send("president=" + presidentName + "&vicepresident=" + vicePresidentName);
   }
 
   // else {

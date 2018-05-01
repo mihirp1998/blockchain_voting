@@ -19,7 +19,7 @@ function sendPost(){
     if(valid) {
       // alert('yoq');
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://127.0.0.1:5000/api/login", true);
+      xhr.open("POST", "http://10.30.26.212:5000/api/login", true);
       xhr.withCredentials = true;
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function() { //Call a function when the state changes.

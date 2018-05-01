@@ -22,7 +22,7 @@ exports.vote = function(req,res){
   var id = req.signedCookies.UserID;
   console.log(id);
   if(id === undefined) {
-    console.log("fuck man");
+    res.status(401).send('Please login first');
   }
   else {
     connection.query('SELECT ethereum_address FROM users WHERE id = ?',[id], function (error, results, fields) {
@@ -31,6 +31,7 @@ exports.vote = function(req,res){
       }else{
         // console.log('The solution is: ', results);
         if(results.length > 0){
+          addr = results[0].ethereum_address;
           var code = voting.voteForCandidates(addr, presidentName, vicePresidentName);
           res.clearCookie("UserID");
           res.sendStatus(code);
