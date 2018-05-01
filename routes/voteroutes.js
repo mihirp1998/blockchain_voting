@@ -23,6 +23,7 @@ exports.vote = function(req,res){
   console.log(id);
   if(id === undefined) {
     res.status(401).send('Please login first');
+    console.log("fuck man");
   }
   else {
     connection.query('SELECT ethereum_address FROM users WHERE id = ?',[id], function (error, results, fields) {
