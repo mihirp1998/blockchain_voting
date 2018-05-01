@@ -32,7 +32,11 @@ exports.login = function(req,res){
           // no: set a new cookie
           var randomNumber=Math.random().toString();
           randomNumber=randomNumber.substring(2,randomNumber.length);
+<<<<<<< HEAD
           // res.cookie('sessID',randomNumber, { maxAge: 120000, httpOnly: true, signed: true});
+=======
+          res.cookie('sessID',randomNumber, { maxAge: 120000, httpOnly: true, signed: true});
+>>>>>>> aa72ad17b44581a3c236268a3a22fdd0f01e14ff
           res.cookie('UserID', id, { maxAge: 120000, httpOnly: true, signed: true});
           console.log('cookie created successfully');
         }

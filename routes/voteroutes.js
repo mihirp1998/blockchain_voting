@@ -22,7 +22,11 @@ exports.vote = function(req,res){
   var id = req.signedCookies.UserID;
   console.log(id);
   if(id === undefined) {
+<<<<<<< HEAD
     res.status(401).send('Please login first');
+=======
+    console.log("fuck man");
+>>>>>>> aa72ad17b44581a3c236268a3a22fdd0f01e14ff
   }
   else {
     connection.query('SELECT ethereum_address FROM users WHERE id = ?',[id], function (error, results, fields) {
@@ -31,7 +35,10 @@ exports.vote = function(req,res){
       }else{
         // console.log('The solution is: ', results);
         if(results.length > 0){
+<<<<<<< HEAD
           addr = results[0].ethereum_address;
+=======
+>>>>>>> aa72ad17b44581a3c236268a3a22fdd0f01e14ff
           var code = voting.voteForCandidates(addr, presidentName, vicePresidentName);
           res.clearCookie("UserID");
           res.sendStatus(code);
