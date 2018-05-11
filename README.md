@@ -21,6 +21,14 @@ The web application is structured in a way such that once all serving components
 The client side credentials are then sent to the server side as a post request over SSL. The backend then sends an acknowledgement of a successful login attempt and grants a cookie for each login. Already existing cookies are cleared before the login process proceeds as a security mechanism.
 After a successful login a different html page is overwritten on the existing page. This page has selection of the candidates that need to be voted. The results of the voted candidates are again posted over SSL and the backend processes the votes by interacting with the blockchain instance running on the server.
 
+File Structure:
+
+![Tree](Images/tree.png)
+
+Block Diagram:
+
+![Block Diagram](Images/Diagram.png)
+
 ---
 
 ## Ethereum Test Network
@@ -30,7 +38,7 @@ $ node_modules/.bin/ganache-cli -m "sorry tragic airport arrive tortoise notice 
 ```
 Run the above line from the terminal to start the blockchain. The string after -m acts like a seed for ganache to select 10 random account addresses. While, you can replace this with any other string, you might want to always use the same string so that the same accounts are generated every time. For more details about ganache-cli, visit https://github.com/trufflesuite/ganache-cli.
 
-![Ganache](/Users/Shaleen/Desktop/Ganache2.png)
+![Ganache](Images/Ganache2.png)
 
 ***
 
@@ -58,7 +66,7 @@ USE Votechain;
 
 The users table will have the following schema.
 
-<img title="Schema" src="/Users/Shaleen/Desktop/Schema.png" style="width: 620px; height: 170px"/>
+<img title="Schema" src="Images/Schema.png" style="width: 620px; height: 170px"/>
 
 Now, we'll create the table.
 
@@ -87,7 +95,7 @@ We will first create a login page in order to authenticate users before they are
 
 ### Front End
 The login page looks like this:
-![Login page](/Users/Shaleen/Desktop/Login.png)
+![Login page](Images/Login.png)
 
 The input fields have constraints specified in the form of regular expressions. The ID needs to be of the form f201XXXXX. Similarly, the password needs to be a non-empty string with no whitespace characters.
 The pattern attributes in the following lines perform the required checks.
@@ -235,7 +243,12 @@ The `?` is replaced by the exact string that is entered by the user, therefore n
 
 ## Deploy the Application
 
+Replace 10.30.26.212 in all files with the IP address of the serving machine.
 To start all the processes required to deploy the application, simply run `./launch.sh` from the parent directory, i.e, `blockchain_voting/`.
+
+Once the services are running ganache-cli will display a transaction with a field `Contract created`. Copy the value of this field and paste it in line 12 of `./voting.js` in place of the existing address.
+
+![Address](Images/Launch.png)
 
 ***
 
