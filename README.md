@@ -243,8 +243,17 @@ The `?` is replaced by the exact string that is entered by the user, therefore n
 
 ## Deploy the Application
 
+<<<<<<< HEAD
 Replace 10.30.26.212 in all files with the IP address of the serving machine.
 To start all the processes required to deploy the application, simply run `./launch.sh` from the parent directory, i.e, `blockchain_voting/`.
+=======
+* Replace P1, VP1, etc. in line 11 of `run.js` with the names of the candidates. Also make these changes in `voting.html`. 
+* Replace 10.30.26.212 in all files with the IP address of the serving machine.
+* To start all the processes required to deploy the application, simply run `./launch.sh` from the parent directory, i.e, `blockchain_voting/`.
+* Once the services are running, ganache-cli will display a transaction with a field `Contract created`. Copy the value of this field and paste it in line 12 of `./voting.js` in place of the existing address.
+
+![Address](Images/Launch.png)
+>>>>>>> Add Images to README
 
 Once the services are running ganache-cli will display a transaction with a field `Contract created`. Copy the value of this field and paste it in line 12 of `./voting.js` in place of the existing address.
 
