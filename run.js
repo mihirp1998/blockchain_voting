@@ -1,6 +1,6 @@
 Web3 = require('web3');
 solc = require('solc');
-web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 code = fs.readFileSync('Voting.sol').toString();
 compiledCode = solc.compile(code);
 

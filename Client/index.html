@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>2018 Election</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -30,13 +30,13 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form id="login" class="login100-form validate-form" method="post" onsubmit="sendPost(); return false">
+				<form id="login" class="login100-form validate-form" method="post" onsubmit="login(); return false">
 					<span class="login100-form-title">
 						Voter Login
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Valid ID is required: f20150999" required pattern="f201\d{5}">
-						<input class="input100" type="text" name="id" placeholder="ID">
+					<div class="wrap-input100 validate-input" data-validate="Valid ID is required: f20150999">
+						<input class="input100" type="text" name="id" placeholder="ID" required pattern="f201\d{5}">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-id-badge" aria-hidden="true"></i>
@@ -65,10 +65,16 @@
 						<span class="txt1">
 							Forgot
 						</span>
-						<a class="txt2" href="#">
+						<a class="txt2" href="#" id="forgot">
 							Username / Password?
 						</a>
 					</div>
+					<script type="text/javascript">
+						function forgot() {
+						 alert("Please check your mail.");
+						}
+						document.getElementById('forgot').onclick = forgot;
+					</script>
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="#">
